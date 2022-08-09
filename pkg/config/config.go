@@ -8,14 +8,16 @@ import (
 	"github.com/spf13/viper"
 )
 
+var WORKDIR string
+
 // init 初始化从执行文件所在目录查找配置文件并加载
 func init() {
+	WORKDIR = viper.GetString("workdir")
 	// 配置文件名字，不包含后缀。 此外可以手动指定配置文件格式： viper.SetConfigType("yaml")
 	viper.SetConfigName("ip2location")
 	// 添加配置搜索的第一个路径，设置为与二进制文件同目录
 	viper.AddConfigPath(".")
-	viper.AddConfigPath("/")
-	viper.AddConfigPath("/etc/")
+	viper.AddConfigPath(WORKDIR)
 	// 判断加载配置文件是否正确
 	if err := viper.ReadInConfig(); err != nil {
 		// 判断是否是因为找不到文件

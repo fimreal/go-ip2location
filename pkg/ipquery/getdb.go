@@ -1,6 +1,7 @@
 package ipquery
 
 import (
+	"github.com/fimreal/go-ip2location/pkg/config"
 	"github.com/fimreal/goutils/ezap"
 	mfile "github.com/fimreal/goutils/file"
 	httpc "github.com/fimreal/goutils/http"
@@ -17,7 +18,7 @@ var (
 func GetDB() {
 	DB_LEVEL := viper.GetString("db_level")
 	DB_TYPE := viper.GetString("db_type")
-	WORKDIR := viper.GetString("workdir")
+	WORKDIR := config.WORKDIR
 	TOKEN := viper.GetString("token")
 	DB_CODE := DB_LEVEL + "LITEBIN" + DB_TYPE
 	DB_URL := "https://www.ip2location.com/download/?token=" + TOKEN + "&file=" + DB_CODE
